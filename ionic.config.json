@@ -1,0 +1,7 @@
+{
+  "name": "Discover Places",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
