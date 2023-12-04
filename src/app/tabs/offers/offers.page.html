@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>My Offers</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="new-offer"> 
+        <ion-icon style="font-size: 30px;" name="add" slot="icon-only" ></ion-icon> 
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row *ngIf="!isLoading && offers.length >= 1">
+      <ion-col sizeSm="6" offsetSm="3">
+        <ion-list>
+          <ion-item-sliding *ngFor="let place of offers" #slidingOffer>
+            <app-offer-item [place]="place"></app-offer-item>
+            <ion-item-options>
+              <ion-item-option (click)="onEdit(place.id, slidingOffer)">
+                <ion-icon slot="icon-only" name="pencil"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row *ngIf="!isLoading && offers.length <= 0">
+      <ion-col sizeSm="6" offsetSm="3">
+        <p class="ion-text-center">You have not made an offer yet!</p>
+        <div class="ion-text-center">
+          <ion-button color="primary" routerLink="new-offer">Offer New Place</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="isLoading">
+      <ion-col sizeSm="6" offsetSm="3">
+        <ion-list>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+            </ion-thumbnail>
+            <ion-label>
+              <h1>
+                <ion-skeleton-text style="width: 35%;" [animated]="true"></ion-skeleton-text>
+              </h1>
+              <p>
+                <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+            </ion-thumbnail>
+            <ion-label>
+              <h1>
+                <ion-skeleton-text style="width: 35%;" [animated]="true"></ion-skeleton-text>
+              </h1>
+              <p>
+                <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+            </ion-thumbnail>
+            <ion-label>
+              <h1>
+                <ion-skeleton-text style="width: 35%;" [animated]="true"></ion-skeleton-text>
+              </h1>
+              <p>
+                <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+            </ion-thumbnail>
+            <ion-label>
+              <h1>
+                <ion-skeleton-text style="width: 35%;" [animated]="true"></ion-skeleton-text>
+              </h1>
+              <p>
+                <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Book this place!
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-input
+          label="First Name"
+          labelPlacement="floating"
+          fill="outline"
+          type="text"
+          formControlName="firstName"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-input
+          label="Last Name"
+          labelPlacement="floating"
+          fill="outline"
+          type="text"
+          formControlName="lastName"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-select fill="outline" label="Number of Guests" labelPlacement="floating" formControlName="guestsNumber">
+            <ion-select-option value="1" >1</ion-select-option>
+            <ion-select-option value="2" >2</ion-select-option>
+            <ion-select-option value="3" >3</ion-select-option>
+            <ion-select-option value="4" >4</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-margin-top">
+        <ion-col sizeSm="6" offsetSm="3">
+          <h3>From:</h3>
+          <ion-datetime  [(ngModel)]="startDate" formControlName="dateFrom" presentation="date" [min]="place.availableFrom.toISOString()" [max]="place.availableTo.toISOString()"></ion-datetime>
+        </ion-col>
+        <ion-col sizeSm="6" offsetSm="3">
+          <h3>To:</h3>
+          <ion-datetime [(ngModel)]="endDate" formControlName="dateTo" presentation="date" [min]="place.availableFrom.toISOString()" [max]="place.availableTo.toISOString()"></ion-datetime>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-button [disabled]="!form.valid || !datesValid()" (click)="onBook()" expand="block" color="primary" type="submit">Book!</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+  
+</ion-content>

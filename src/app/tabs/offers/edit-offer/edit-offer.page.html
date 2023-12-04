@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="'tabs/offers/' + place?.id"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="!form?.valid" (click)="onEditOffer()">
+        <ion-icon name="checkmark" slot="icon-only" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Edit {{ isLoading ? '' : place?.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="ion-text-center" *ngIf="isLoading">
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+  <form *ngIf="!isLoading" [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-input
+          label="Title"
+          fill="outline"
+          labelPlacement="floating"
+          type="text"
+          formControlName="title"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-textarea
+          label="Description"
+          fill="outline"
+          labelPlacement="floating"
+          formControlName="description"
+          ></ion-textarea>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-input
+          type="number"
+          fill="outline"
+          label="Price"
+          labelPlacement="floating"
+          formControlName="price"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-margin-top">
+        <ion-col sizeSm="3" offsetSm="3">
+          <ion-item>
+            <ion-label>Avilable from</ion-label>
+            <ion-datetime-button datetime="from"></ion-datetime-button>
+          </ion-item>
+        </ion-col>
+        <ion-col sizeSm="3">
+          <ion-item>
+            <ion-label>Avilable to</ion-label>
+            <ion-datetime-button datetime="to"></ion-datetime-button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+     </ion-grid>
+     <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime [showDefaultButtons]="true" formControlName="dateFrom" presentation="date" id="from" [value]="today" [min]="today" max="2024-12-31"></ion-datetime>
+      </ng-template>
+     </ion-modal>
+     <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime [showDefaultButtons]="true" formControlName="dateTo" presentation="date" id="to" [value]="today" [min]="today" max="2024-12-31"></ion-datetime>
+      </ng-template>
+     </ion-modal>
+  </form>
+</ion-content>

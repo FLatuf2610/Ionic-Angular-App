@@ -1,0 +1,27 @@
+ion-header{
+    background-color: #3880ff;
+}
+
+ion-segment {
+    --background: #3880ff;
+}
+
+ion-segment-button::part(indicator-background) {
+    background: white;
+  }
+  
+  /* Material Design styles */
+ion-segment-button.md::part(native) {
+    color: rgb(241, 241, 241);
+}
+  
+.segment-button-checked.md::part(native) {
+    color: white;
+}
+  
+ion-segment-button.md::part(indicator-background) {
+    height: 3px;
+}
+
+
+  
